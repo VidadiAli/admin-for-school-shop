@@ -100,7 +100,7 @@ const AdminPanel = () => {
 
     const callMenuSend = async () => {
         if (imageUrl != 'undefined' && imageUrl != '') {
-            const menuSection = document.getElementById('section'), menuClass = document.getElementById('class'), menuElementName = document.getElementById('nameOfO'), menuPrice = document.getElementById('price'), menuCount = document.getElementById('count');
+            const menuSection = document.getElementById('section'), menuClass = document.getElementById('class'), menuElementName = document.getElementById('nameOfO'), menuPrice = document.getElementById('price'), menuCount = document.getElementById('count'), imageFile = document.getElementById('imageFile');
 
             if (menuSection.value.trim() != '' && menuClass.value.trim() != '' && menuElementName.value.trim() != '' && menuPrice.value.trim() != '' && menuCount.value.trim() != '') {
                 const element1 = {
@@ -119,7 +119,8 @@ const AdminPanel = () => {
                 await axios.post(`${mainData}postbook${jsonUrl}`, element1);
                 setSelectClass('');
                 setImageUrl('');
-                menuSection.value = '', menuClass.value = '', menuElementName.value = '', menuPrice.value = '', menuCount.value = ''
+                menuSection.value = '', menuClass.value = '', menuElementName.value = '', menuPrice.value = '', menuCount.value = '', imageFile.value = ''
+                alert('Şəkil Əlavə olundu!');
             }
             else {
                 alert("Məlumatları tam doldurun!");
@@ -243,7 +244,7 @@ const AdminPanel = () => {
                     <input type="text" placeholder='Sinfi qeyd et:' id='class' />
                     <input type="text" placeholder='Obyektin adını qeyd et:' id='nameOfO' />
                     <input type="text" placeholder='Obyektin qiymətini qeyd et:' id='price' />
-                    <input type="file" onChange={(e) => uploadCover(e)} />
+                    <input type="file" onChange={(e) => uploadCover(e)} id='imageFile' />
                     <input type="text" placeholder='Obyektin sayını qeyd et:' id='count' />
                     <input type="button" value="Əlavə et" onClick={callMenuSend} />
                 </form>
